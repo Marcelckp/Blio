@@ -6,12 +6,26 @@
     "start": "next start"
   },
   "dependencies": {
+    "@heroicons/react": "^1.0.5",
+    "@mdi/js": "^6.5.95",
+    "@mdi/react": "^1.5.0",
+    "@reduxjs/toolkit": "^1.7.1",
+    "@types/js-cookie": "^3.0.1",
+    "axios": "^0.26.0",
+    "bcrypt": "^5.0.1",
+    "js-cookie": "^3.0.1",
+    "lottie-react": "^2.2.1",
+    "moment": "^2.29.1",
     "next": "latest",
+    "pg": "^8.7.3",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.0",
     "@types/node": "17.0.4",
+    "@types/pg": "^8.6.4",
     "@types/react": "17.0.38",
     "autoprefixer": "^10.4.0",
     "postcss": "^8.4.5",
