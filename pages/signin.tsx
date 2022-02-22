@@ -15,47 +15,53 @@ export default function signin() {
   const Password = useRef<any>(null)
 
   const signIn = async () => {
-    setLoading(true)
-    setError(false)
-    let data
-    if (/@\w+[\.]\w/.test(Account!.current!.value)) {
-      data = await axios
-        .post('/api/account/read', {
-          email: Account.current.value,
-          password: Password.current.value,
-        })
-        .then((res) => {
-          console.log(res)
-          setLoading(false)
-        })
-        .catch(({ response }) => {
-          console.log(response.data)
-          setLoading(false)
-          setError(response.data.errorMsg)
-          setErrorAcc(true)
-          setErrorPassword(true)
-          Account.current.value = ''
-          Password.current.value = ''
-        })
+    if (Account.current.value && Password.current.value) {
+      setLoading(true)
+      setError(false)
+      let data
+      if (/@\w+[\.]\w/.test(Account!.current!.value)) {
+        data = await axios
+          .post('/api/account/read', {
+            email: Account.current.value,
+            password: Password.current.value,
+          })
+          .then((res) => {
+            console.log(res)
+            setLoading(false)
+          })
+          .catch(({ response }) => {
+            console.log(response.data)
+            setLoading(false)
+            setError(response.data.errorMsg)
+            setErrorAcc(true)
+            setErrorPassword(true)
+            Account.current.value = ''
+            Password.current.value = ''
+          })
+      } else {
+        data = await axios
+          .post('/api/account/read', {
+            username: Account.current.value,
+            password: Password.current.value,
+          })
+          .then((res) => {
+            console.log(res)
+            setLoading(false)
+          })
+          .catch(({ response }) => {
+            console.log(response.data)
+            setLoading(false)
+            setError(response.data.errorMsg)
+            setErrorAcc(true)
+            setErrorPassword(true)
+            Account.current.value = ''
+            Password.current.value = ''
+          })
+      }
     } else {
-      data = await axios
-        .post('/api/account/read', {
-          username: Account.current.value,
-          password: Password.current.value,
-        })
-        .then((res) => {
-          console.log(res)
-          setLoading(false)
-        })
-        .catch(({ response }) => {
-          console.log(response.data)
-          setLoading(false)
-          setError(response.data.errorMsg)
-          setErrorAcc(true)
-          setErrorPassword(true)
-          Account.current.value = ''
-          Password.current.value = ''
-        })
+      setError('Please provide a username & password to sign in')
+      setErrorAcc(true)
+      setErrorPassword(true)
     }
   }
 
