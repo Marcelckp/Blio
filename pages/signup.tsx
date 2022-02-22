@@ -23,40 +23,56 @@ export default function signup() {
 
   const signUp = async () => {
     if (
-      Password.current.value === ConfirmPassword.current.value &&
-      Password.current.value
+      Password.current.value &&
+      ConfirmPassword.current.value &&
+      Username.current.value &&
+      Email.current.value &&
+      Fullname.current.value
     ) {
-      setLoading(true)
-      setError(false)
+      if (
+        Password.current.value === ConfirmPassword.current.value &&
+        Password.current.value
+      ) {
+        setLoading(true)
+        setError(false)
 
-      try {
-        const user = await axios
-          .post('/api/account/create', {
-            fullname: Fullname.current!.value,
-            email: Email.current!.value,
-            password: Password.current!.value,
-            username: Username.current!.value,
-          })
-          .then((_) => setLoading(false))
+        try {
+          const user = await axios
+            .post('/api/account/create', {
+              fullname: Fullname.current!.value,
+              email: Email.current!.value,
+              password: Password.current!.value,
+              username: Username.current!.value,
+            })
+            .then((_) => setLoading(false))
 
-        console.log(user)
-      } catch ({ response }) {
-        console.log(response)
-        setLoading(false)
-        setError(response.data.errorMsg)
-        setErrorAcc(true)
-        setErrorPassword(true)
-        setErrorEmail(true)
-        setErrorUsername(true)
+          console.log(user)
+        } catch ({ response }) {
+          console.log(response)
+          setLoading(false)
+          setError(response.data.errorMsg)
+          setErrorAcc(true)
+          setErrorPassword(true)
+          setErrorEmail(true)
+          setErrorUsername(true)
+          setErrorConfirm(true)
+          Fullname.current.value = ''
+          Email.current.value = ''
+          Username.current.value = ''
+          Password.current.value = ''
+          ConfirmPassword.current.value = ''
+        }
+      } else {
+        setError('The passwords you entered do not match')
         setErrorConfirm(true)
-        Fullname.current.value = ''
-        Email.current.value = ''
-        Username.current.value = ''
-        Password.current.value = ''
-        ConfirmPassword.current.value = ''
       }
     } else {
-      setError(`Error creating account`)
+      setError(`Please fill out all the fields below`)
+      setLoading(false)
+      setErrorAcc(true)
+      setErrorPassword(true)
+      setErrorEmail(true)
+      setErrorUsername(true)
       setErrorConfirm(true)
     }
   }
@@ -64,7 +80,7 @@ export default function signup() {
   return (
     <section className=" flex h-screen min-h-[800px] w-full items-center justify-center">
       <section className="flex h-full min-h-[1000px] items-center justify-center">
-        <div className=" flex w-full max-w-screen-md flex-col items-center justify-center md:flex-row space-x-5">
+        <div className=" flex w-full max-w-screen-md flex-col items-center justify-center space-x-5 md:flex-row">
           {loading ? (
             <LoadingDots text={'Creating Account'} />
           ) : (
