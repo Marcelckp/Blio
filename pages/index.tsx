@@ -1,82 +1,157 @@
 import Head from 'next/head'
+import { useSelector } from 'react-redux'
+import { PhotoCard } from '../Components/'
+import { whiteArrow, blackArrow } from '../public/assets/shared/desktop/arrow'
+
+import createShareD from '../public/assets/home/desktop/create-and-share.jpg'
+import designed from '../public/assets/home/desktop/designed-for-everyone.jpg'
+import beautiful from '../public/assets/home/desktop/beautiful-stories.jpg'
+import Image from 'next/image'
+import { useEffect } from 'react'
+
+import Img1 from '../public/assets/stories/desktop/calm-waters.jpg'
+import Img2 from '../public/assets/stories/desktop/architecturals.jpg'
+import Img3 from '../public/assets/stories/desktop/behind-the-waves.jpg'
+import Img4 from '../public/assets/stories/desktop/dark-forest.jpg'
 
 export default function Home() {
+  const user = useSelector((state: any) => state?.user?.user)
+
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2">
-      <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <div className="flex w-full flex-col items-center justify-center">
+      <div className="flex w-full max-w-screen-2xl flex-col items-center justify-center">
+        <Head>
+          <title>Blio</title>
+        </Head>
+        <section className="mt-20 w-full md:flex md:h-[700px] md:flex-row-reverse">
+          <div className="relative h-[400px] w-full md:h-full md:w-2/4 xl:w-4/5">
+            <Image
+              src={createShareD}
+              priority
+              objectFit="cover"
+              objectPosition="center center"
+              layout="fill"
+              quality={100}
+            />
+          </div>
 
-      <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
-        <h1 className="text-6xl font-bold">
-          Welcome to{' '}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
-          </a>
-        </h1>
+          <div className="flex w-full items-center justify-center bg-black py-16 xl:w-3/5">
+            <div className="w-10/12">
+              <h1 className="text-3xl font-medium leading-snug tracking-widest text-white">
+                CREATE AND SHARE YOUR PHOTO STORIES.
+              </h1>
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{' '}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
+              <p className="py-8 leading-loose text-gray-500">
+                Photosnap is a platform for photographers and visual
+                storytellers. We make it wast to share photos, tell stories and
+                connect with others.
+              </p>
 
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <a
-            href="https://nextjs.org/docs"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
+              <div className="flex w-full items-center space-x-6 text-white">
+                <h1 className="font-medium tracking-widest">GET STARTED </h1>
+                {/* <img src={white.src} className="h-4" alt="" />
+                 */}
+                {whiteArrow}
+              </div>
+            </div>
+          </div>
+        </section>
 
-          <a
-            href="https://nextjs.org/learn"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
+        <section className="w-full text-black md:flex md:h-[700px]">
+          <div className="relative h-[400px] w-full md:h-full md:w-2/4 xl:w-4/5">
+            <Image
+              src={beautiful}
+              objectFit="cover"
+              layout="fill"
+              quality={100}
+            />
+          </div>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
+          <div className="flex w-full items-center justify-center py-16 xl:w-3/5">
+            <div className="w-10/12">
+              <h1 className="text-3xl font-medium leading-snug tracking-widest">
+                BEAUTIFUL STORIES EVERY TIME
+              </h1>
 
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
-          >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
-            <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+              <p className="w-full py-8 leading-loose">
+                We provide ways for you to easily add photos, text and any other
+                content from other networks to compliment your story, So that
+                you can search it with everyone.
+              </p>
 
-      <footer className="flex h-24 w-full items-center justify-center border-t">
-        <a
-          className="flex items-center justify-center"
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/vercel.svg" alt="Vercel Logo" className="ml-2 h-4" />
-        </a>
-      </footer>
+              <div className="flex w-full items-center space-x-6">
+                <h1 className="font-medium tracking-widest">VIEW STORIES</h1>
+                {/* <img src={whiteArrow} className="h-4" alt="" /> */}
+                {blackArrow}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="w-full text-black md:flex md:h-[700px] md:flex-row-reverse ">
+          <div className="relative h-[400px] w-full md:h-full md:w-2/4 xl:w-4/5">
+            <Image
+              src={designed}
+              objectFit="cover"
+              layout="fill"
+              quality={100}
+            />
+          </div>
+
+          <div className="flex w-full items-center justify-center py-16 xl:w-3/5">
+            <div className="w-10/12">
+              <h1 className="text-3xl font-medium leading-snug tracking-widest">
+                BEAUTIFUL STORIES EVERY TIME
+              </h1>
+
+              <p className="w-full py-8 leading-loose">
+                Blio can help you create stories that esonate with people and
+                engage them in what you are about as a personal blog. Our tool
+                is designed for photographers of all levels, brands, businesses
+                but is not exclusive to them view some of the stories and decide
+                if you want to join our community.
+              </p>
+
+              <div className="flex w-full items-center space-x-6">
+                <h1 className="font-medium tracking-widest">VIEW STORIES</h1>
+                {/* <img src={whiteArrow} className="h-4" alt="" /> */}
+                {blackArrow}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="h-auto w-full md:grid md:grid-cols-2 xl:h-[600px] xl:grid-cols-4">
+          <PhotoCard
+            creator={'Marcel Palmer'}
+            postId={2}
+            src={Img1.src}
+            title={'This is summer'}
+            createdAt={Date.now()}
+          />
+          <PhotoCard
+            creator={'Marcel Palmer'}
+            postId={2}
+            src={Img2.src}
+            title={'This is summer'}
+            createdAt={Date.now()}
+          />
+          <PhotoCard
+            creator={'Marcel Palmer'}
+            postId={2}
+            src={Img3.src}
+            title={'This is summer'}
+            createdAt={Date.now()}
+          />
+          <PhotoCard
+            creator={'Marcel Palmer'}
+            postId={2}
+            src={Img4.src}
+            title={'This is summer'}
+            createdAt={Date.now()}
+          />
+        </section>
+      </div>
     </div>
   )
 }
