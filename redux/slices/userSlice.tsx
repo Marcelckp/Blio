@@ -1,23 +1,29 @@
-import { createSlice } from '@reduxjs/toolkit';
-import Cookie from 'js-cookie';
+import { createSlice } from '@reduxjs/toolkit'
+import Cookie from 'js-cookie'
+
+let biscuit;
+
+if (Cookie.get('user')) {
+    biscuit = JSON.parse(Cookie.get('user') || "{}")
+}
 
 export const userSlice = createSlice({
-    name: 'user',
-    initialState: {
-        user: null
+  name: 'user',
+  initialState: {
+    user: biscuit || null,
+  },
+  reducers: {
+    login: (state, action) => {
+      state.user = action.payload
+      Cookie.set('user', JSON.stringify(state.user))
     },
-    reducers: {
-        login: (state, action) => {
-            state.user = action.payload;
-
-        },
-        logout: (state) => {
-            state.user = null;
-            Cookie.remove('user');
-        }
-    }
+    logout: (state) => {
+      state.user = null
+      Cookie.remove('user')
+    },
+  },
 })
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout } = userSlice.actions
 
-export default userSlice.reducer;
+export default userSlice.reducer
