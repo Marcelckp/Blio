@@ -1,10 +1,16 @@
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { Loader, LoadingDots } from '../Components'
+import Cookie from 'js-cookie'
+import { useDispatch } from 'react-redux'
+import { login } from '../redux/slices/userSlice'
+// import { GetServerSideProps } from 'next'
 
 export default function signin() {
   const router = useRouter()
+
+  const dispatch = useDispatch()
 
   const [error, setError] = useState<any>(false)
   const [errorAcc, setErrorAcc] = useState<null | boolean>(null)
@@ -13,6 +19,10 @@ export default function signin() {
 
   const Account = useRef<any>(null)
   const Password = useRef<any>(null)
+
+  useEffect(() => {
+    if (Cookie.get('user')) window.location.replace('/')
+  })
 
   const signIn = async () => {
     if (Account.current.value && Password.current.value) {
@@ -28,6 +38,7 @@ export default function signin() {
           .then((res) => {
             console.log(res)
             setLoading(false)
+            dispatch(login(res.data.account))
           })
           .catch(({ response }) => {
             console.log(response.data)
@@ -47,6 +58,8 @@ export default function signin() {
           .then((res) => {
             console.log(res)
             setLoading(false)
+            dispatch(login(res.data.account))
+            history.back()
           })
           .catch(({ response }) => {
             console.log(response.data)
@@ -122,3 +135,20 @@ export default function signin() {
     </section>
   )
 }
+
+// export const getServerSideProps = async () => {
+//   console.log(Cookie.get('user'))
+//   if (Cookie.get('user')) {
+//     return {
+//       redirect: {
+//         permanent: false,
+//         destination: '/',
+//       },
+//       props: {},
+//     }
+//   } else {
+//     return {
+//       props: {},
+//     }
+//   }
+// }
