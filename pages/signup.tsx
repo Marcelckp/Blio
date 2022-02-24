@@ -1,6 +1,7 @@
 import axios from 'axios'
+import Cookies from 'js-cookie'
 import { useRouter } from 'next/router'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Loader, LoadingDots } from '../Components'
 
 export default function signup() {
@@ -20,6 +21,11 @@ export default function signup() {
   const Password = useRef<any>(null)
   const Username = useRef<any>(null)
   const ConfirmPassword = useRef<any>(null)
+
+  useEffect(() => {
+    if (Cookies.get('user')) window.location.replace('/')
+  })
+
 
   const signUp = async () => {
     if (
