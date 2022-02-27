@@ -88,15 +88,26 @@ export const Nav = () => {
                 <h1>ABOUT</h1>
               </div>
               {user ? (
-                <div
-                  className="cursor-pointer bg-black px-3 py-2 font-medium tracking-widest text-white transition-all duration-300 ease-in-out hover:bg-opacity-40"
-                  onClick={() => {
-                    router.push('/profile')
-                    setActive(false)
-                  }}
-                >
-                  <h1>PROFILE</h1>
-                </div>
+                <>
+                  <div
+                    className="cursor-pointer bg-black px-3 py-2 font-medium tracking-widest text-white transition-all duration-300 ease-in-out hover:bg-opacity-40"
+                    onClick={() => {
+                      router.push('/profile')
+                      setActive(false)
+                    }}
+                  >
+                    <h1>PROFILE</h1>
+                  </div>
+                  <div
+                    className="cursor-pointer bg-black px-3 py-2 font-medium tracking-widest text-white transition-all duration-300 ease-in-out hover:bg-opacity-40"
+                    onClick={() => {
+                      router.push('/create')
+                      setActive(false)
+                    }}
+                  >
+                    <h1>CREATE POST</h1>
+                  </div>
+                </>
               ) : (
                 <>
                   <div
@@ -150,7 +161,7 @@ const DropDown = ({ active, user, deactivate }: DropDownProps) => {
           active ? ' h-64 py-5' : 'h-0'
         }`}
       >
-        <div className="flex w-10/12 flex-col items-center justify-center">
+        <div className="flex w-10/12 cursor-pointer flex-col items-center justify-center">
           <div
             className="p-2 font-medium tracking-widest"
             onClick={() => {
@@ -161,7 +172,7 @@ const DropDown = ({ active, user, deactivate }: DropDownProps) => {
             <h1>HOME</h1>
           </div>
           <div
-            className=" flex w-full items-center justify-center p-2 font-medium tracking-widest"
+            className=" flex w-full cursor-pointer items-center justify-center p-2 font-medium tracking-widest"
             onClick={() => {
               router.push('/stories')
               deactivate()
@@ -170,7 +181,7 @@ const DropDown = ({ active, user, deactivate }: DropDownProps) => {
             <h1>STORIES</h1>
           </div>
           <div
-            className="mb-2 flex w-full items-center justify-center border-b-2 p-2 font-medium tracking-widest"
+            className="mb-2 flex w-full cursor-pointer items-center justify-center border-b-2 p-2 font-medium tracking-widest"
             onClick={() => {
               router.push('/about')
               deactivate()
@@ -179,19 +190,30 @@ const DropDown = ({ active, user, deactivate }: DropDownProps) => {
             <h1>ABOUT</h1>
           </div>
           {user ? (
-            <div
-              className="mb-2 mt-2 flex w-full items-center justify-center bg-black p-2 font-medium tracking-widest text-white hover:bg-opacity-40"
-              onClick={() => {
-                router.push('/profile')
-                deactivate()
-              }}
-            >
-              <h1>PROFILE</h1>
-            </div>
+            <>
+              <div
+                className="mb-2 mt-2 flex w-full cursor-pointer items-center justify-center bg-black p-2 font-medium tracking-widest text-white transition duration-300 ease-in-out hover:bg-opacity-40"
+                onClick={() => {
+                  router.push('/profile')
+                  deactivate()
+                }}
+              >
+                <h1>PROFILE</h1>
+              </div>
+              <div
+                className="mb-2 mt-2 flex w-full cursor-pointer items-center justify-center bg-black p-2 font-medium tracking-widest text-white transition duration-300 ease-in-out hover:bg-opacity-40"
+                onClick={() => {
+                  router.push('/create')
+                  deactivate()
+                }}
+              >
+                <h1>CREATE POST</h1>
+              </div>
+            </>
           ) : (
             <>
               <div
-                className="mb-2 mt-2 flex w-full items-center justify-center bg-black p-2 font-medium tracking-widest text-white hover:bg-opacity-40"
+                className="mb-2 mt-2 flex w-full cursor-pointer items-center justify-center bg-black p-2 font-medium tracking-widest text-white transition duration-300 ease-in-out hover:bg-opacity-40"
                 onClick={() => {
                   router.push('/signup')
                   deactivate()
@@ -200,7 +222,7 @@ const DropDown = ({ active, user, deactivate }: DropDownProps) => {
                 <h1>SIGN UP</h1>
               </div>
               <div
-                className="mb-2 flex w-full items-center justify-center bg-black p-2 font-medium tracking-widest text-white hover:bg-opacity-40"
+                className="mb-2 flex w-full cursor-pointer items-center justify-center bg-black p-2 font-medium tracking-widest text-white transition duration-300 ease-in-out hover:bg-opacity-40"
                 onClick={() => {
                   router.push('signin')
                   deactivate()
