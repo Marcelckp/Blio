@@ -16,43 +16,46 @@ export default function signin() {
   const [errorBody, setErrorBody] = useState<null | boolean>(null)
   const [errorTitle, setErrorTitle] = useState<null | boolean>(null)
   const [errorPhoto, setErrorPhoto] = useState<null | boolean>(null)
-
+  const [post, setPost] = useState<null | object>(null)
   const [loading, setLoading] = useState(false)
 
   const Title = useRef<any>(null)
   const Body = useRef<any>(null)
-  const Photo = useRef<any>(null)
+  const [Photo, setPhoto] = useState(null)
 
   useEffect(() => {
     if (!Cookie.get('user')) window.location.replace('/')
-  })
+    if (Cookie.get('post')) setPost(JSON.parse(Cookie.get('post') || ''))
+  },[setPost])
 
   const createPost = async () => {
     // console.log(Title, Photo, Body);
-    if (Body.current.value && Photo.current.value && Title.current.value) {
+    if (Body.current.value && Photo && Title.current.value) {
       setLoading(true)
       setError(false)
-      let data;
-      
+      let data
+
       data = await axios
         .post('/api/post/create', {
-          photo: Photo.current.value,
+          photo: Photo,
           body: Body.current.value,
           title: Title.current.value,
         })
         .then((res) => {
           console.log(res)
           setLoading(false)
-          dispatch(login(res.data.account))
+          setPost(res.data.post)
+          Cookie.set('post', JSON.stringify(res.data.post))
         })
         .catch(({ response }) => {
           console.log(response)
           setLoading(false)
-          setError(response.data.errorMsg)
+          setError(response.data.message || response.data.errorMsg)
           setErrorBody(true)
           setErrorTitle(true)
           setErrorPhoto(true)
         })
+        
     } else {
       setError('Please make sure all provided fields are filled')
       setErrorTitle(true)
@@ -61,9 +64,16 @@ export default function signin() {
     }
   }
 
+  console.log(post)
+
   return (
     <section className="h-screen min-h-[800px] w-full">
       <section className=" flex h-full items-center justify-center">
+        {post ? 
+          <div>
+            <h1>heres the post</h1>
+          </div>
+        :
         <div className=" flex w-full max-w-screen-md flex-col items-center justify-center md:flex-row md:space-x-8">
           {loading ? (
             <LoadingDots text={'Creating Post'} />
@@ -73,21 +83,21 @@ export default function signin() {
                 Create a new post
               </h1>
               <br />
-              <p className="text-gray-500 text-left text-base">
+              <p className="text-left text-base text-gray-500">
                 * To make text bold wrap it with {'<'}b{'>'}
               </p>
-              <p className="text-gray-500 text-left text-base">
+              <p className="text-left text-base text-gray-500">
                 * To make text italicized wrap it with {'<'}i{'>'}
               </p>
-              <p className="text-gray-500 text-left text-base">
+              <p className="text-left text-base text-gray-500">
                 * To make a title use {'<'}t{'>'}
               </p>
-              <p className="text-gray-500 text-left text-base">
+              <p className="text-left text-base text-gray-500">
                 * To make subheadings use {'<'}h{'>'}
               </p>
             </div>
           )}
-          <div className="h-full md:w-2/3 flex-grow-0 p-5">
+          <div className="h-full flex-grow-0 p-5 md:w-2/3">
             {loading ? (
               <Loader />
             ) : (
@@ -104,8 +114,11 @@ export default function signin() {
                 />
                 <input
                   type="file"
-                  onChange={() => setErrorPhoto(false)}
-                  ref={Photo}
+                  onChange={(e:any) => { 
+                    console.log(e.target.files[0].name, e.target.files[0]);
+                    setPhoto(e.target.files[0].name)
+                    setErrorPhoto(false)
+                  }}
                   placeholder="Select the photo you want to share..."
                   className={`mt-5 w-full rounded border-2 bg-gray-100 p-3 ${
                     errorPhoto && 'border-red-500 placeholder:text-red-500'
@@ -128,7 +141,7 @@ export default function signin() {
               </>
             )}
           </div>
-        </div>
+        </div> }
       </section>
     </section>
   )
