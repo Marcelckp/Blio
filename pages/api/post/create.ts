@@ -31,37 +31,43 @@ export default async function handler(
 
       //   console.log(cloudinary.config());
       console.log(photo)
+
+      let data 
+
       try {
-      cloudinary.uploader.upload(photo, (err: any, result: any) => {
-        console.log(err, result)
-      })
-    } catch (e) {
-        console.log(e);
-    }
+        data = await cloudinary.uploader.upload(photo)
+      } catch (e) {
+        console.log(e)
+      }
 
-      //   try {
-      //     const values = [
-      //       JSON.parse(req.cookies.user).user_id,
-      //       title,
-      //       body,
-      //       body.slice(0, 155),
-      //       photo,
-      //       Date.now().toLocaleString(),
-      //     ]
+      console.log(data, data.url)
+      try {
+        if (data) {
+          const values = [
+            JSON.parse(req.cookies.user).user_id,
+            title,
+            body,
+            body.slice(0, 155),
+            data?.url,
+            Date.now().toLocaleString(),
+          ]
 
-      //     const post = await db.query(query, values)
-      //     console.log(post.rows)
-      //     return res
-      //       .status(200)
-      //       .json({ message: 'Post successfully created', post: post.rows[0] })
-      //   } catch (err) {
-      //     console.log(err)
-      //     return res.status(400).json({
-      //       message: 'Error creating post',
-      //       error: true,
-      //       errorMsg: err,
-      //     })
-      //   }
+          const post = await db.query(query, values)
+          console.log(post.rows)
+          return res
+            .status(200)
+            .json({ message: 'Post successfully created', post: post.rows[0] })
+        } else {
+          return res.status(400).json({ message: 'Photo data was to big to create a post', error:true, errorMsg: 'Photo data was to big to create a post' });
+        }
+      } catch (err) {
+        console.log(err)
+        return res.status(400).json({
+          message: 'Error creating post',
+          error: true,
+          errorMsg: err,
+        })
+      }
     } else {
       return res.status(400).json({
         message:
