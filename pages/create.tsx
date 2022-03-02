@@ -5,6 +5,7 @@ import { Loader, LoadingDots, ImageSelectorComponent } from '../Components'
 import Cookie from 'js-cookie'
 import { useDispatch } from 'react-redux'
 import { login } from '../redux/slices/userSlice'
+import { Post } from '../Types'
 
 // import { GetServerSideProps } from 'next'
 
@@ -16,7 +17,7 @@ export default function signin() {
   const [errorTitle, setErrorTitle] = useState<null | boolean>(null)
   const [errorPhoto, setErrorPhoto] = useState<null | boolean>(null)
   const [image, setImage] = useState<any>(null)
-  const [post, setPost] = useState<null | object>(null)
+  const [post, setPost] = useState<null | Post>(null)
   const [loading, setLoading] = useState(false)
 
   const Title = useRef<any>(null)
