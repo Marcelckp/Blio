@@ -5,7 +5,7 @@ const pool = new Pool({
 })
 
 interface poolType {
-  query: (text: any, params: any, callback?: any) => any | void | Function
+  query: (text: any, params?: any, callback?: any) => any | void | Function
 }
 
 export const db: poolType = {
