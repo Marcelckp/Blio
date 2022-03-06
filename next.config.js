@@ -2,7 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['iili.io'],
+    domains: ['res.cloudinary.com', 'iili.io'],
   },
   // async rewrites() {
   //   return [
