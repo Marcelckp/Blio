@@ -106,7 +106,10 @@ export default function signin() {
               </h1>
             </div>
             <div className="flex w-full space-x-5 px-5">
-              <button onClick={() => router.push('/stories')} className="w-full rounded bg-black p-3 text-xl text-white">
+              <button onClick={() => {
+                Cookie.remove('post')
+                router.push('/stories')
+              }} className="w-full rounded bg-black p-3 text-xl text-white">
                 Valid
               </button>
               <button
