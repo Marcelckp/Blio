@@ -47,7 +47,7 @@ export const ImageSelectorComponent = ({
         })}
         className={`mt-5 flex h-32 w-full flex-col items-center justify-center rounded border-2 bg-gray-100 p-3 ${
           error && 'border-red-500 placeholder:text-red-500'
-        } ${isDragActive && 'border-green-500 bg-green-200'}`}
+        } ${isDragActive && 'border-green-500 bg-green-200'} hover:border-green-500 hover:bg-green-200`}
       >
         <CameraIcon className="-z-0 h-10 w-10 text-gray-400" />
         <h1 className="-z-0 text-gray-400">
