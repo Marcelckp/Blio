@@ -17,9 +17,21 @@ import somwarpet from '../../public/assets/stories/desktop/somwarpet.jpg';
 import tripToNo from '../../public/assets/stories/desktop/trip-to-nowhere.jpg';
 import unforeseen from '../../public/assets/stories/desktop/unforeseen-corners.jpg';
 import worldTour from '../../public/assets/stories/desktop/world-tour.jpg';
+import { useEffect } from 'react'
+import axios from 'axios'
+import { InnerJoinPost } from '../../Types'
+import { GetServerSideProps } from 'next'
 
-export default function index() {
-  console.log()
+
+interface Props {
+  data: [InnerJoinPost]
+}
+
+export default function index(props: Props) {
+
+  useEffect(() => {
+  }, [])
+
   return (
     <div className="flex flex-col items-center justify-center ">
       <section className="mt-20 flex w-full max-w-screen-2xl flex-col items-center justify-center">
@@ -51,111 +63,134 @@ export default function index() {
         <div className="relative w-full md:grid md:grid-cols-2  xl:grid-cols-4">
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsa222'}
             src={behindTheWaves.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsa11'}
             src={'https://iili.io/1oHFM7.jpg'}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsasdf'}
             src={calmWaters.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsa2476'}
             src={cityScapes.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsa456'}
             src={darkForest.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsadj'}
             src={kingOnAfrica.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsa587'}
             src={landOfDreams.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsa45'}
             src={milkyWay.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsaf1'}
             src={mountains.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsa2'}
             src={rageOfTheSea.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'asdfsa3'}
             src={runningFree.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'12234aef'}
             src={somwarpet.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'1234gjk'}
             src={tripToNo.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'1234kjk'}
             src={unforeseen.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
           <PhotoCard
             creator={'Marcel Palmer'}
-            postId={2}
+            postId={'12341sg'}
             src={worldTour.src}
             title={'This is summer'}
             createdAt={Date.now()}
           />
+
+          { props.data && props.data.map((post) => <PhotoCard 
+            creator={post.username}
+            postId={post.post_id}
+            src={post.photo}
+            title={post.title}
+            createdAt={post.created_on}
+          />)}
         </div>
       </section>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  let data:any = [];
+  try {
+    data = await axios.get<Array<InnerJoinPost>>('http://localhost:3000/api/post/read/')
+  } catch (e) {
+    console.log(e);
+  }
+    return {
+      props: {
+        data: data.data.posts
+      }
+    }
+
 }
