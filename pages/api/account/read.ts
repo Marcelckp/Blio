@@ -1,3 +1,4 @@
+import cookie from 'cookie';
 import type { NextApiRequest, NextApiResponse } from 'next'
 import { db } from '../../../models/PGdb'
 import bcrypt from 'bcrypt'
@@ -44,6 +45,7 @@ export default async function handler(
 
             if (hashCompare) {
               Cookie.set('user', account.rows[0])
+              res.setHeader('Set-Cookie', cookie.serialize('user', JSON.stringify(account.rows[0]), { httpOnly: false, path: '/' }))
               return res.status(200).json({
                 message: 'User successfully authenticated',
                 account: account.rows[0],
