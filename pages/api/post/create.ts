@@ -30,8 +30,6 @@ export default async function handler(
       const query = `INSERT INTO posts (user_id, title, body, blur, photo, created_on) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`
 
       //   console.log(cloudinary.config());
-      console.log(photo)
-
       let data 
 
       try {
