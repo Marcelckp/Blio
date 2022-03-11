@@ -7,7 +7,7 @@ import { GetStateFromSelectors } from 'reselect/es/types'
 import { store } from '../redux/store'
 import { InnerJoinPost } from '../Types'
 import { UserCircleIcon } from '@heroicons/react/solid'
-import { PhotoCard } from '../Components'
+import { NoPostsIcon, PhotoCard } from '../Components'
 
 interface Props {
   data: [InnerJoinPost]
@@ -42,10 +42,10 @@ export default function profile({ data }: Props) {
             </div>
           </section>
         </div>
-        <div className="relative w-full md:grid md:grid-cols-2  xl:grid-cols-4">
+        { data.length < 0 ? <div className="relative w-full md:grid md:grid-cols-2  xl:grid-cols-4">
           {data && data.map((item: InnerJoinPost, index) => <PhotoCard creator={item.fullname} postId={item.post_id} src={item.photo} title={item.title} createdAt={item.created_on}  />
           )}
-        </div>
+        </div> : <NoPostsIcon /> }
       </section>
     </div>
   )
