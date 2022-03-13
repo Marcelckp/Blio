@@ -7,3 +7,4 @@ export { LoadingDots } from './LoadingDots';
 export { CreatePostIcon } from './CreatePostIcon';
 export { ImageSelectorComponent } from './ImageSelectorComponent';
 export { NoPostsIcon } from './NoPostsIcon';
+export { PfpOverlay } from './PfpOverlay';
