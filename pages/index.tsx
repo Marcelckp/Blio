@@ -13,10 +13,11 @@ import Img1 from '../public/assets/stories/desktop/calm-waters.jpg'
 import Img2 from '../public/assets/stories/desktop/architecturals.jpg'
 import Img3 from '../public/assets/stories/desktop/behind-the-waves.jpg'
 import Img4 from '../public/assets/stories/desktop/dark-forest.jpg'
+import { useRouter } from 'next/router'
 
 export default function Home() {
   const user = useSelector((state: any) => state?.user?.user)
-
+  const router = useRouter()
   return (
     <div className="flex w-full flex-col items-center justify-center">
       <div className="flex w-full max-w-screen-2xl flex-col items-center justify-center">
@@ -47,7 +48,7 @@ export default function Home() {
                 connect with others.
               </p>
 
-              <div className="flex w-full items-center space-x-6 text-white">
+              <div className="flex w-full items-center space-x-6 text-white cursor-pointer" onClick={() => user ? '' : router.push('/login')}>
                 <h1 className="font-medium tracking-widest">GET STARTED </h1>
                 {/* <img src={white.src} className="h-4" alt="" />
                  */}
@@ -79,7 +80,7 @@ export default function Home() {
                 you can search it with everyone.
               </p>
 
-              <div className="flex w-full items-center space-x-6">
+              <div className="flex w-full items-center space-x-6 cursor-pointer"  onClick={() => router.push('/stories')}>
                 <h1 className="font-medium tracking-widest">VIEW STORIES</h1>
                 {/* <img src={whiteArrow} className="h-4" alt="" /> */}
                 {blackArrow}
@@ -105,14 +106,14 @@ export default function Home() {
               </h1>
 
               <p className="w-full py-8 leading-loose">
-                Blio can help you create stories that esonate with people and
+                Blio can help you create stories that resonate with people and
                 engage them in what you are about as a personal blog. Our tool
                 is designed for photographers of all levels, brands, businesses
                 but is not exclusive to them view some of the stories and decide
                 if you want to join our community.
               </p>
 
-              <div className="flex w-full items-center space-x-6">
+              <div className="flex w-full items-center space-x-6 cursor-pointer" onClick={() => router.push('/stories')}>
                 <h1 className="font-medium tracking-widest">VIEW STORIES</h1>
                 {/* <img src={whiteArrow} className="h-4" alt="" /> */}
                 {blackArrow}
