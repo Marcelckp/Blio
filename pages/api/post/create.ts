@@ -1,4 +1,3 @@
-import axios from 'axios'
 import type { NextApiRequest, NextApiResponse } from 'next'
 const cloudinary = require('cloudinary').v2
 import { db } from '../../../models/PGdb'
