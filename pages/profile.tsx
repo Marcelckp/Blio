@@ -14,7 +14,7 @@ interface Props {
 
 export default function profile({ data }: Props) {
   const user = useSelector((state: any) => state.user.user)
-  // console.log(data, user)
+  console.log(data, user)
 
   const [openProfilePhoto, setProfilePhoto] = useState(false)
   useEffect(() => {
