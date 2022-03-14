@@ -45,7 +45,7 @@ export const ImageSelectorComponent = ({
           onDrop: (event: any) => console.log(event),
           refKey: 'photo',
         })}
-        className={`mt-5 flex h-32 w-full flex-col items-center justify-center rounded border-2 bg-gray-100 p-3 ${
+        className={`flex h-32 w-full flex-col items-center justify-center rounded border-2 bg-gray-100 p-3 ${
           error && 'border-red-500 placeholder:text-red-500'
         } ${isDragActive && 'border-green-500 bg-green-200'} hover:border-green-500 hover:bg-green-200`}
       >
