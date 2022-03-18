@@ -22,4 +22,5 @@ export interface InnerJoinPost {
   username: string
   last_login: string
   password: string
+  profile_picture: string
 }
