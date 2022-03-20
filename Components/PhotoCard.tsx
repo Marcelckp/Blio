@@ -4,6 +4,7 @@ import { whiteArrow } from '../public/assets/shared/desktop/arrow'
 import mnt from 'moment'
 import { UserCircleIcon } from '@heroicons/react/solid'
 import { useSelector } from 'react-redux'
+import { useRouter } from 'next/router'
 
 interface Props {
   creator: string
@@ -12,6 +13,7 @@ interface Props {
   title: string
   src: string
   profile_picture?: string
+  user_id: any
 }
 
 export const PhotoCard = ({
@@ -20,11 +22,12 @@ export const PhotoCard = ({
   title,
   createdAt,
   src,
+  user_id,
   profile_picture,
 }: Props) => {
   const time = mnt(+createdAt.toString().replaceAll(',', ''))
   const user = useSelector((state: any) => state.user.user)
-
+  const router = useRouter()
   return (
     <div
       className={`relative flex h-[600px] w-full cursor-pointer items-center justify-center  bg-cover bg-no-repeat object-fill transition-all duration-300 ease-in-out hover:-translate-y-10`}
@@ -41,11 +44,11 @@ export const PhotoCard = ({
           <div className=" border-b-[1px] border-gray-500 py-5">
             <p className="py-1 text-sm">{time.format('DD MMM YYYY')}</p>
             <h1 className="text-2xl font-semibold">{title}</h1>
-            <div className="mt-2 flex items-center space-x-2">
+            <div onClick={() => user && user.fullname === creator ? '' : router.push(`/profile/${user_id}`)} className="mt-2 flex items-center space-x-2">
               {( user && user.fullname === creator ) ? (
                 <h1>Created by you</h1>
               ) : (
-                <>
+                <div>
                   {profile_picture ? (
                     <Image
                       className="cursor-pointer rounded-full"
@@ -56,7 +59,7 @@ export const PhotoCard = ({
                   ) : (
                     <UserCircleIcon className="h-8 w-8" />
                   )}
-                </>
+                </div>
               )}
               { ( user && user.fullname === creator ) ? (
                 ''
