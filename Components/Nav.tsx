@@ -113,7 +113,7 @@ export const Nav = () => {
                   <div
                     className="cursor-pointer bg-black px-3 py-2 font-medium tracking-widest text-white transition-all duration-300 ease-in-out hover:bg-opacity-40 "
                     onClick={() => {
-                      router.push('signup')
+                      router.push('/signup')
                       setActive(false)
                     }}
                   >
@@ -122,7 +122,7 @@ export const Nav = () => {
                   <div
                     className="cursor-pointer bg-black px-3 py-2 font-medium tracking-widest text-white transition duration-300 ease-in-out hover:bg-opacity-40"
                     onClick={() => {
-                      router.push('signin')
+                      router.push('/signin')
                       setActive(false)
                     }}
                   >
