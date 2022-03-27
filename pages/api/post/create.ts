@@ -5,6 +5,7 @@ import { db } from '../../../models/PGdb'
 type Data = {
   message: string
   post: any
+  metadata?: any
 }
 
 type Error = {
@@ -50,10 +51,23 @@ export default async function handler(
           ]
 
           const post = await db.query(query, values)
-          console.log(post.rows)
-          return res
-            .status(200)
-            .json({ message: 'Post successfully created', post: post.rows[0] })
+          console.log(post.rows[0])
+
+          try {
+
+            const query1 = 'INSERT INTO metadata (post_id, clicks, likes, comments, shares) VALUES ($1, $2, $3, $4, $5) RETURNING *'
+            
+            const values1 = [post.rows[0].post_id, 0, 0, 0 ,0]
+
+            const metadata = await db.query(query1, values1)
+
+            return res
+              .status(200)
+              .json({ message: 'Post successfully created', post: post.rows[0], metadata: metadata.rows[0]})
+          } catch (e) {
+            console.log(e)
+            return res.status(500).json({ message: 'Metadata failed to be set', error: true, errorMsg: 'Metadata failed to be set' })
+          }
         } else {
           return res.status(400).json({ message: 'Photo data was to big to create a post', error:true, errorMsg: 'Photo data was to big to create a post' });
         }
