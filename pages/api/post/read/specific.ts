@@ -26,7 +26,7 @@ export default async function handler(
     } = req.body
     const query =
       'SELECT * FROM posts INNER JOIN accounts USING(user_id) WHERE user_id = $1'
-    const value = [JSON.parse(cookie.user || '')?.user_id]
+    const value = [+cookie.id || JSON.parse(cookie.user || '').user_id]
     let response
     try {
       response = await db.query(query, value)

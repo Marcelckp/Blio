@@ -62,6 +62,7 @@ export default function index(props: Props) {
         </div>
         <div className="relative w-full md:grid md:grid-cols-2  xl:grid-cols-4">
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsa222'}
             src={behindTheWaves.src}
@@ -69,6 +70,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsa11'}
             src={'https://iili.io/1oHFM7.jpg'}
@@ -76,6 +78,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsasdf'}
             src={calmWaters.src}
@@ -83,6 +86,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsa2476'}
             src={cityScapes.src}
@@ -90,6 +94,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsa456'}
             src={darkForest.src}
@@ -97,6 +102,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsadj'}
             src={kingOnAfrica.src}
@@ -104,6 +110,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsa587'}
             src={landOfDreams.src}
@@ -111,6 +118,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsa45'}
             src={milkyWay.src}
@@ -118,6 +126,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsaf1'}
             src={mountains.src}
@@ -125,6 +134,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsa2'}
             src={rageOfTheSea.src}
@@ -132,6 +142,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'asdfsa3'}
             src={runningFree.src}
@@ -139,6 +150,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'12234aef'}
             src={somwarpet.src}
@@ -146,6 +158,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'1234gjk'}
             src={tripToNo.src}
@@ -153,6 +166,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'1234kjk'}
             src={unforeseen.src}
@@ -160,6 +174,7 @@ export default function index(props: Props) {
             createdAt={Date.now()}
           />
           <PhotoCard
+            user_id={7}
             creator={'Marcel Palmer'}
             postId={'12341sg'}
             src={worldTour.src}
@@ -168,11 +183,13 @@ export default function index(props: Props) {
           />
 
           { props.data && props.data.map((post) => <PhotoCard 
-            creator={post.username}
+            user_id={post.user_id}
+            creator={post.fullname}
             postId={post.post_id}
             src={post.photo}
             title={post.title}
             createdAt={post.created_on}
+            profile_picture={post.profile_picture}
           />)}
         </div>
       </section>
