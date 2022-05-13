@@ -30,6 +30,7 @@ interface Props {
 export default function index(props: Props) {
 
   useEffect(() => {
+    console.log(props.data)
   }, [])
 
   return (
@@ -61,128 +62,8 @@ export default function index(props: Props) {
           </div>
         </div>
         <div className="relative w-full md:grid md:grid-cols-2  xl:grid-cols-4">
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsa222'}
-            src={behindTheWaves.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsa11'}
-            src={'https://iili.io/1oHFM7.jpg'}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsasdf'}
-            src={calmWaters.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsa2476'}
-            src={cityScapes.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsa456'}
-            src={darkForest.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsadj'}
-            src={kingOnAfrica.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsa587'}
-            src={landOfDreams.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsa45'}
-            src={milkyWay.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsaf1'}
-            src={mountains.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsa2'}
-            src={rageOfTheSea.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'asdfsa3'}
-            src={runningFree.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'12234aef'}
-            src={somwarpet.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'1234gjk'}
-            src={tripToNo.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'1234kjk'}
-            src={unforeseen.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-          <PhotoCard
-            user_id={7}
-            creator={'Marcel Palmer'}
-            postId={'12341sg'}
-            src={worldTour.src}
-            title={'This is summer'}
-            createdAt={Date.now()}
-          />
-
-          { props.data && props.data.map((post) => <PhotoCard 
+          { props.data && props.data.map((post, idx) => <PhotoCard 
+            key={idx}
             user_id={post.user_id}
             creator={post.fullname}
             postId={post.post_id}
