@@ -7,6 +7,7 @@ export interface Post {
   post_id: number
   user_id: number
   created_on: string
+  post?: any
 }
 
 export interface InnerJoinPost {
