@@ -39,13 +39,22 @@ export const PhotoCard = ({
         layout="fill"
         objectFit="cover"
       />
-      <div className="flex h-full w-full items-end justify-center bg-gradient-to-b from-[#fff0] to-[#00000080]">
+      <div
+        className="flex h-full w-full items-end justify-center bg-gradient-to-b from-[#fff0] to-[#00000080]"
+      >
         <div className="w-10/12 py-5 text-white">
           <div className=" border-b-[1px] border-gray-500 py-5">
             <p className="py-1 text-sm">{time.format('DD MMM YYYY')}</p>
             <h1 className="text-2xl font-semibold">{title}</h1>
-            <div onClick={() => user && user.fullname === creator ? '' : router.push(`/profile/${user_id}`)} className="mt-2 flex items-center space-x-2">
-              {( user && user.fullname === creator ) ? (
+            <div
+              onClick={() =>
+                user && user.fullname === creator
+                  ? ''
+                  : router.push(`/profile/${user_id}`)
+              }
+              className="mt-2 flex items-center space-x-2"
+            >
+              {user && user.fullname === creator ? (
                 <h1>Created by you</h1>
               ) : (
                 <div>
@@ -55,13 +64,14 @@ export const PhotoCard = ({
                       src={profile_picture}
                       width="24px"
                       height="24px"
+                      priority
                     />
                   ) : (
                     <UserCircleIcon className="h-8 w-8" />
                   )}
                 </div>
               )}
-              { ( user && user.fullname === creator ) ? (
+              {user && user.fullname === creator ? (
                 ''
               ) : (
                 <p className="py-1 text-sm">
@@ -71,10 +81,19 @@ export const PhotoCard = ({
             </div>
           </div>
           <div
-            className="flex w-full items-center justify-between py-4"
-            onClick={() => {}}
+            className="flex w-full items-center justify-between py-4 z-10"
+            onClick={() => {
+              router.push(`/stories/${postId}`)
+            }}
           >
-            <h2 className="text-base tracking-widest">READ STORY</h2>
+            <h2
+              className="text-base tracking-widest z-10"
+              onClick={() => {
+                router.push(`/stories/${postId}`)
+              }}
+            >
+              VIEW STORY
+            </h2>
             {whiteArrow}
           </div>
         </div>
